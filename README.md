@@ -60,7 +60,7 @@
 (k + 1) * O(m log n)
 = O((k + 1)m log n)
 = O(km log n)
-- **Justification (one line):** Dijkstra runs once from the spawn node, and once from each relic node, and the cost per run is O(m log n), so multiplying those gives the total complexity.
+- **Justification (one line):** Dijkstra runs once from the spawn node and once from each relic node.
 
 ---
 

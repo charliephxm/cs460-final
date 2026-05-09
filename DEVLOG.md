@@ -10,26 +10,21 @@
 
 ---
 
-## Entry 1 – [Date]: Initial Plan
+## Entry 1 – [5/9/2026]: Initial Plan
 
 > Required. Write this before writing any code. Describe your plan: what you will
 > implement first, what parts you expect to be difficult, and how you plan to test.
 
-I plan to first implement Dijkstra's algorithm so that I can compute the shortest
-paths between important nodes. After, I will precompute and store distances before
-implementing recursive backtracking search. I think that the hardest part for me
-will be backtracking since it has recursion, pruning, and state management. To test
-my code, I will be using the tests at the bottom of torchbearer.py and debug any cases
-that fail step by step.
+I plan to first implement Dijkstra's algorithm so that I can compute the shortest paths between important nodes. After, I will precompute and store distances before implementing recursive backtracking search. I think that the hardest part for me will be backtracking since it has recursion, pruning, and state management. To test my code, I will be using the tests at the bottom of torchbearer.py and debug any cases that fail step by step.
 
 ---
 
-## Entry 2 – [Date]: [Short description]
+## Entry 2 – [5/9/2026]: Implemented Dijkstra and Precomputation
 
 > Required. At least one entry must describe a bug, wrong assumption, or design change
 > you encountered. Describe what went wrong and how you resolved it.
 
-_Your entry here._
+Today I implemented the Dijkstra algorithm, source selection, and the precomputed distance table. At first, I incorrectly thought that all distances should start at 0, but I realized that would incorrectly assume that every node was already reachable with a zero cost. I saw the "Unreachable nodes map to float('inf')." note and initialized all distances to float('inf') except for the source node, which starts at 0. I also learned how stale heap entries work and why they need to be skipped during Dijkstra's processing. I completed the README sections for Parts 1 and 2 and the implementations.
 
 ---
 

@@ -1,7 +1,7 @@
 # The Torchbearer
 
-**Student Name:** ___________________________
-**Student ID:** ___________________________
+**Student Name:** Charlie Pham
+**Student ID:** 828249377
 **Course:** CS 460 – Algorithms | Spring 2026
 
 > This README is your project documentation. Write it the way a developer would document
@@ -17,13 +17,13 @@
 > per question. Each bullet should be 1-2 sentences max.
 
 - **Why a single shortest-path run from S is not enough:**
-  _Your answer here._
+  It is not enough because even though it computes shortest distances from S, it does not tell us the order in which the relics should be visited.
 
 - **What decision remains after all inter-location costs are known:**
-  _Your answer here._
+  The decision that remains is determining the optimal order of travel between the relics.
 
 - **Why this requires a search over orders (one sentence):**
-  _Your answer here._
+  There are many different orders, with differing costs, so one calculation could not compare all the possibilities.
 
 ---
 
@@ -35,8 +35,8 @@
 
 | Source Node Type | Why it is a source |
 |---|---|
-| _node type_ | _one-line reason_ |
-| _node type_ | _one-line reason_ |
+| spawn node | The path begins at the spawn node, so we find the shortest costs from it. |
+| relic nodes | After each relic, the path may continue to another relic or to the exit. |
 
 ### Part 2b: Distance Storage
 
@@ -44,20 +44,23 @@
 
 | Property | Your answer |
 |---|---|
-| Data structure name | |
-| What the keys represent | |
-| What the values represent | |
-| Lookup time complexity | |
-| Why O(1) lookup is possible | |
+| Data structure name | nested dictionary |
+| What the keys represent | First keys are source nodes, second keys are destination nodes |
+| What the values represent | The shortest distance from the source node to the destination node. |
+| Lookup time complexity | O(1) |
+| Why O(1) lookup is possible | Dictionaries allow direct access to values using keys. |
 
 ### Part 2c: Precomputation Complexity
 
 > State the total complexity and show the arithmetic. Two to three lines max.
 
-- **Number of Dijkstra runs:** _your answer_
-- **Cost per run:** _your answer_
-- **Total complexity:** _your answer_
-- **Justification (one line):** _your answer_
+- **Number of Dijkstra runs:** k + 1
+- **Cost per run:** O(m log n)
+- **Total complexity:**
+(k + 1) * O(m log n)
+= O((k + 1)m log n)
+= O(km log n)
+- **Justification (one line):** Dijkstra runs once from the spawn node, and once from each relic node, and the cost per run is O(m log n), so multiplying those gives the total complexity.
 
 ---
 

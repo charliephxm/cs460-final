@@ -2,8 +2,8 @@
 CS 460 – Algorithms: Final Programming Assignment
 The Torchbearer
 
-Student Name: ___________________________
-Student ID:   ___________________________
+Student Name: Charlie Pham
+Student ID:   828249377
 
 INSTRUCTIONS
 ------------
@@ -34,7 +34,11 @@ def explain_problem():
 
     TODO
     """
-    return "TODO"
+    return """
+It is not enough because even though it computes shortest distances from S, it does not tell us the order in which the relics should be visited.
+The decision that remains is determining the optimal order of travel between the relics.
+There are many different orders, with differing costs, so one calculation could not compare all the possibilities.
+"""
 
 
 # =============================================================================
@@ -56,7 +60,13 @@ def select_sources(spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    sources = []
+
+    for node in [spawn] + relics:
+        if node not in sources:
+            sources.append(node)
+
+    return sources
 
 
 def run_dijkstra(graph, source):
@@ -75,7 +85,26 @@ def run_dijkstra(graph, source):
 
     TODO
     """
-    pass
+    dist = {}
+
+    for node in graph:
+        dist[node] = float('inf')
+    dist[source] = 0
+    heap = [(0, source)]
+
+    while heap:
+        current_dist, current_node = heapq.heappop(heap)
+
+        if current_dist > dist[current_node]:
+            continue
+
+        for neighbor, weight in graph[current_node]:
+            new_dist = current_dist + weight
+            if new_dist < dist[neighbor]:
+                dist[neighbor] = new_dist
+                heapq.heappush(heap, (new_dist, neighbor))
+
+    return dist
 
 
 def precompute_distances(graph, spawn, relics, exit_node):
@@ -95,7 +124,13 @@ def precompute_distances(graph, spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    sources = select_sources(spawn, relics, exit_node)
+    dist_table = {}
+
+    for source in sources:
+        dist_table[source] = run_dijkstra(graph, source)
+
+    return dist_table
 
 
 # =============================================================================

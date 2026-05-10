@@ -131,9 +131,9 @@ The precomputed shortest distances have to be correct so that the planner can ch
 
 | Component | Variable name in code | Data type | Description |
 |---|---|---|---|
-| Current location | | | |
-| Relics already collected | | | |
-| Fuel cost so far | | | |
+| Current location | current_loc | node | Node where search currently is |
+| Relics already collected | relics_visited_order | list | Relics collected so far, in the order they're visited in |
+| Fuel cost so far | cost_so_far | float | Total fuel used by the current partial route |
 
 ### Part 5b: Data Structure for Visited Relics
 
@@ -141,18 +141,18 @@ The precomputed shortest distances have to be correct so that the planner can ch
 
 | Property | Your answer |
 |---|---|
-| Data structure chosen | |
-| Operation: check if relic already collected | Time complexity: |
-| Operation: mark a relic as collected | Time complexity: |
-| Operation: unmark a relic (backtrack) | Time complexity: |
-| Why this structure fits | |
+| Data structure chosen | set |
+| Operation: check if relic already collected | Time complexity: O(1) avg |
+| Operation: mark a relic as collected | Time complexity: O(1) avg |
+| Operation: unmark a relic (backtrack) | Time complexity: O(1) avg |
+| Why this structure fits | Sets allows for fast membership checks and fast adding and removing operations during backtracking |
 
 ### Part 5c: Worst-Case Search Space
 
 > Two bullets.
 
-- **Worst-case number of orders considered:** _Your answer (in terms of k)._
-- **Why:** _One-line justification._
+- **Worst-case number of orders considered:** k!
+- **Why:** In worst case, the algorithm may need to try every possible order of the k relics.
 
 ---
 
@@ -162,23 +162,23 @@ The precomputed shortest distances have to be correct so that the planner can ch
 
 > Three bullets.
 
-- **What is tracked:** _Your answer here._
-- **When it is used:** _Your answer here._
-- **What it allows the algorithm to skip:** _Your answer here._
+- **What is tracked:** Best is tracking the lowest fuel cost path and its respective relic travel order.
+- **When it is used:** It is used when a complete route is found, to compare to decide whether to update the best path, and during recursion, to stop branches that already cost more than the best path.
+- **What it allows the algorithm to skip:** It allows the algorithm to skip paths that are already more expensive than the shortest cost found so far.
 
 ### Part 6b: Lower Bound Estimation
 
 > Three bullets.
 
-- **What information is available at the current state:** _Your answer here._
-- **What the lower bound accounts for:** _Your answer here._
-- **Why it never overestimates:** _Your answer here._
+- **What information is available at the current state:** At the current state, the algorithm currently knows the current location, the relics already collected, the fuel cost so far, and the relics that still remain.
+- **What the lower bound accounts for:** It accounts for the fuel already spent in the current partial route.
+- **Why it never overestimates:** Because all remaining edge weights are nonnegative, the total end cost will never be less than the cost so far.
 
 ### Part 6c: Pruning Correctness
 
 > One to two bullets. Explain why pruning is safe.
 
-- _Your answer here._
+- If the cost so far is already at least the best complete path cost, the branch is safe to prune since all future travel costs are nonnegative and can't make the route any cheaper.
 
 ---
 
@@ -186,4 +186,4 @@ The precomputed shortest distances have to be correct so that the planner can ch
 
 > Bullet list. If none beyond lecture notes, write that.
 
-- _Your references here._
+- Lecture notes

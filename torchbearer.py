@@ -204,7 +204,12 @@ def find_optimal_route(dist_table, spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    relics_remaining = set(relics)
+    relics_visited_order = []
+    cost_so_far = 0.0
+    best = [float('inf'), []]
+    _explore(dist_table, spawn, relics_remaining, relics_visited_order, cost_so_far, exit_node, best)
+    return best[0], best[1]
 
 
 def _explore(dist_table, current_loc, relics_remaining, relics_visited_order,
@@ -236,7 +241,31 @@ def _explore(dist_table, current_loc, relics_remaining, relics_visited_order,
     explaining why it is safe (cannot skip the optimal solution).
     This comment is graded.
     """
-    pass
+    if cost_so_far >= best[0]:
+        # pruning condition: if cost so far is already greater than or equal to the 
+        # best cost found, prune this path because edge weights are nonnegative and
+        # any future moves can only increase the total cost, not decrease it. 
+        return
+    
+    if not relics_remaining:
+        if dist_table[current_loc][exit_node] == float('inf'):
+            return
+        total_cost = cost_so_far + dist_table[current_loc][exit_node]
+        if total_cost < best[0]:
+            best[0] = total_cost
+            best[1] = relics_visited_order.copy()
+        return
+    
+    for relic in list(relics_remaining):
+        travel_cost = dist_table[current_loc][relic]
+        if travel_cost == float('inf'):
+            continue
+        new_cost = cost_so_far + travel_cost
+        relics_remaining.remove(relic)
+        relics_visited_order.append(relic)
+        _explore(dist_table, relic, relics_remaining, relics_visited_order, new_cost, exit_node, best)
+        relics_visited_order.pop()
+        relics_remaining.add(relic)
 
 
 # =============================================================================

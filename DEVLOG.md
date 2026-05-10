@@ -34,9 +34,9 @@ Today I completed the README sections for Parts 3 and 4. I worked through the Di
 
 ---
 
-## Entry 4 – [Date]: [Description]
+## Entry 4 – [5/10/2026]: [State and Search Space and Pruning]
 
-_Your entry here._
+Today I implemented and completed parts 5 and 6. I worked on the recursive state representation using the current location, remaining relics, relic visiting order, and total fuel cost so far. I also implemented pruning using the best route found so far and learned how backtracking restores the state after exploring each recursive branch.
 
 ---
 
@@ -55,12 +55,12 @@ _Your entry here._
 
 | Part | Estimated Hours |
 |---|---|
-| Part 1: Problem Analysis | 0.25 |
-| Part 2: Precomputation Design | 2 |
-| Part 3: Algorithm Correctness | 0.25 |
-| Part 4: Search Design | 0.33 |
-| Part 5: State and Search Space |  |
-| Part 6: Pruning |  |
+| Part 1: Problem Analysis | 5 |
+| Part 2: Precomputation Design | 80 |
+| Part 3: Algorithm Correctness | 5 |
+| Part 4: Search Design | 5 |
+| Part 5: State and Search Space | 30 |
+| Part 6: Pruning | 45 |
 | Part 7: Implementation |  |
-| README and DEVLOG writing |  |
+| README and DEVLOG writing | 185 |
 | **Total** |  |

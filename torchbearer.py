@@ -147,7 +147,14 @@ def dijkstra_invariant_check():
 
     TODO
     """
-    return "TODO"
+    return """
+For finalized nodes: Once a node is finalized, its shortest distance cannot become any smaller later.
+For non-finalized nodes: Their current distances are the best known distances so far, but shorter distances can be found later.
+Initialization: Initially, only the source node has a known shortest distance of 0, while all the other nodes are unreachable with infinity.
+Maintenance: Nonnegative edge weights guarantee that a finalized min-dist node is always correct because any future paths can only increase the total cost, and not decrease it.
+Termination: When the algorithm ends, all reachable nodes have been finalized, so their shortest distances have been found.
+Why this Matters: The precomputed shortest distances have to be correct so that the planner can choose the optimal route and compute accurate total costs.
+"""
 
 
 # =============================================================================
@@ -164,7 +171,13 @@ def explain_search():
 
     TODO
     """
-    return "TODO"
+    return """
+The failure mode: Greedy only looks at the best/cheapest immediate move, but does not consider how that cchoice may consider future total cost.
+Counter-example setup: Suppose S -> B = 1, S -> C = 2, B -> C = 100, C -> B = 1, both B and C connect to T with a cost of 1.
+What greedy picks: Greedy would pick B first since it is the shortest distance relic from S.
+What optimal picks: Optimal would pick C first, then B, then exit to T.
+Why greedy loses: Greedy loses because it picks the best immediate choice, B, but that causes it to take an expensive route from B to C, costing 100.
+"""
 
 
 # =============================================================================

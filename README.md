@@ -75,29 +75,29 @@
 > Do not copy the invariant text from the spec.
 
 - **For nodes already finalized (in S):**
-  _Your answer here._
+  Once a node is finalized, its shortest distance cannot become any smaller later.
 
 - **For nodes not yet finalized (not in S):**
-  _Your answer here._
+  Their current distances are the best known distances so far, but shorter distances can be found later.
 
 ### Part 3b: Why Each Phase Holds
 
 > One to two bullets per phase. Maintenance must mention nonnegative edge weights.
 
 - **Initialization : why the invariant holds before iteration 1:**
-  _Your answer here._
+  Initially, only the source node has a known shortest distance of 0, while all the other nodes are unreachable with infinity.
 
 - **Maintenance : why finalizing the min-dist node is always correct:**
-  _Your answer here._
+  Nonnegative edge weights guarantee that a finalized min-dist node is always correct because any future paths can only increase the total cost, and not decrease it.
 
 - **Termination : what the invariant guarantees when the algorithm ends:**
-  _Your answer here._
+  When the algorithm ends, all reachable nodes have been finalized, so their shortest distances have been found.
 
 ### Part 3c: Why This Matters for the Route Planner
 
 > One sentence connecting correct distances to correct routing decisions.
 
-_Your answer here._
+The precomputed shortest distances have to be correct so that the planner can choose the optimal route and compute accurate total costs.
 
 ---
 
@@ -108,17 +108,17 @@ _Your answer here._
 > State the failure mode. Then give a concrete counter-example using specific node names
 > or costs (you may use the illustration example from the spec). Three to five bullets.
 
-- **The failure mode:** _Your answer here._
-- **Counter-example setup:** _Your answer here._
-- **What greedy picks:** _Your answer here._
-- **What optimal picks:** _Your answer here._
-- **Why greedy loses:** _Your answer here._
+- **The failure mode:** Greedy only looks at the best/cheapest immediate move, but does not consider how that cchoice may consider future total cost.
+- **Counter-example setup:** Suppose S -> B = 1, S -> C = 2, B -> C = 100, C -> B = 1, both B and C connect to T with a cost of 1.
+- **What greedy picks:** Greedy would pick B first since it is the shortest distance relic from S.
+- **What optimal picks:** Optimal would pick C first, then B, then exit to T.
+- **Why greedy loses:** Greedy loses because it picks the best immediate choice, B, but that causes it to take an expensive route from B to C, costing 100.
 
 ### What the Algorithm Must Explore
 
 > One bullet. Must use the word "order."
 
-- _Your answer here._
+- The algorithm must explore the different orders of visiting relics since the total route will ultimately depend on the path order.
 
 ---
 

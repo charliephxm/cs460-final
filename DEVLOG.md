@@ -28,13 +28,19 @@ Today I implemented the Dijkstra algorithm, source selection, and the precompute
 
 ---
 
-## Entry 3 – [Date]: [Short description]
+## Entry 3 – [5/9/2026]: Correctness and Search Design
+
+Today I completed the README sections for Parts 3 and 4. I worked through the Dijkstra invariant and why nonnegative edge weights guarantee correctness when nodes are finalized. I also analyzed why a greedy strategy might fail for the relic problem and why the algorithm needs to explore different visiting orders instead of only choosing the best next relic.
+
+---
+
+## Entry 4 – [Date]: [Description]
 
 _Your entry here._
 
 ---
 
-## Entry 4 – [Date]: Post-Implementation Reflection
+## Entry 5 – [Date]: Post-Implementation Reflection
 
 > Required. Written after your implementation is complete. Describe what you would
 > change or improve given more time.
@@ -51,10 +57,10 @@ _Your entry here._
 |---|---|
 | Part 1: Problem Analysis | 0.25 |
 | Part 2: Precomputation Design | 2 |
-| Part 3: Algorithm Correctness | |
-| Part 4: Search Design | |
-| Part 5: State and Search Space | |
-| Part 6: Pruning | |
-| Part 7: Implementation | |
-| README and DEVLOG writing | |
-| **Total** | |
+| Part 3: Algorithm Correctness | 0.25 |
+| Part 4: Search Design | 0.33 |
+| Part 5: State and Search Space |  |
+| Part 6: Pruning |  |
+| Part 7: Implementation |  |
+| README and DEVLOG writing |  |
+| **Total** |  |

@@ -172,11 +172,12 @@ def explain_search():
     TODO
     """
     return """
-The failure mode: Greedy only looks at the best/cheapest immediate move, but does not consider how that cchoice may consider future total cost.
+The failure mode: Greedy only looks at the best/cheapest immediate move, but does not consider how that choice may consider future total cost.
 Counter-example setup: Suppose S -> B = 1, S -> C = 2, B -> C = 100, C -> B = 1, both B and C connect to T with a cost of 1.
 What greedy picks: Greedy would pick B first since it is the shortest distance relic from S.
 What optimal picks: Optimal would pick C first, then B, then exit to T.
 Why greedy loses: Greedy loses because it picks the best immediate choice, B, but that causes it to take an expensive route from B to C, costing 100.
+What the Algorithm Must Explore: The algorithm must explore the different orders of visiting relics since the total route will ultimately depend on the path order.
 """
 
 
@@ -289,7 +290,9 @@ def solve(graph, spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    dist_table = precompute_distances(graph, spawn, relics, exit_node)
+    return find_optimal_route(dist_table, spawn, relics, exit_node)
+
 
 
 # =============================================================================
